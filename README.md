@@ -322,3 +322,25 @@ useEffect(() => {
     }, [emotion])
 ```
 I'm going to pass emotion into this dependency array to keep tracks of values. NOw I can see everytime this being updated. so useEffect is going to watch this state value if it changes it will call the function. 
+
+**Incorporating useReducer**
+Let's consider a checkbox and how we might manage it say using react.
+```
+function App() {
+    const [checked, toggle] = useReducer(
+        (checked) => !checked,
+        false
+    );
+    return (
+        <>
+            <input type="checkbox" value={checked} onChange={toggle}/> // Instead set the whole function, we can send the name of the function here
+            <p>
+                {checked ? "checked" : "not checked"}
+            </p>
+            </>
+
+    );
+}
+```
+A reducer function's most simple definition is it takes in the current state and it returns a new state. If checked is false, it should return the opposite, which is true. 
+

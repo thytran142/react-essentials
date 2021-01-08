@@ -1,22 +1,18 @@
 import './App.css';
-import React, {useState, useEffect} from 'react';
+import React, {useReducer} from 'react';
 function App() {
-    const [emotion, setEmotion] = useState("happy");
-    const [secondary, setSecondary] = useState("tired");
-    useEffect(() => {
-        console.log(`It's ${emotion} around here!`);
-    }, [emotion])
-    useEffect(() => {
-        console.log(`It's ${secondary} around here!`);
-    }, [secondary]);
+    const [checked, toggle] = useReducer(
+        (checked) => !checked,
+        false
+    );
     return (
         <>
-            <h1>Current emotion is {emotion} {secondary}.</h1>
-            <button onClick={() => setSecondary("crabby")}>Make crabby</button>
-            <button onClick={() => setEmotion("happy")}>Happy</button>
-            <button onClick={() => setEmotion("frustrated")}>Frustrate</button>
-            <button onClick={() => setEmotion("enthusiastic")}>Enthuse</button>
+            <input type="checkbox" value={checked} onChange={toggle}/>
+            <p>
+                {checked ? "checked" : "not checked"}
+            </p>
             </>
+
     );
 }
 
