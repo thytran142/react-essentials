@@ -7,7 +7,7 @@ const [mostImportantItem, second, light] = ["boots", "tent", "headlamp"];
 console.log(mostImportantItem, second, light);
 
 ReactDOM.render(
-    <App login={"thytran142"} />,
+    <App login="thytran142" />,
     document.getElementById('root')
 )
 
