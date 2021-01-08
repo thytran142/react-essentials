@@ -296,5 +296,29 @@ function App() {
 }
 ```
 useState has 2 variables: 1 is state, 1 is the function.
+**Working with useEffect**
+Another important Hook that's part of the React library is useEffect. It's typically used to manage side effects that are not related to the components render. Things like console messages, loading data and sometimes animations can benefit from useEffect.
 
-
+```
+function App() {
+    const [emotion, setEmotion] = useState("happy");
+    useEffect(() => {
+        console.log(`It's ${emotion} around here!`);
+    })
+    return (
+        <>
+            <h1>Current emotion is {emotion}.</h1>
+            <button onClick={() => setEmotion("happy")}>Happy</button>
+            <button onClick={() => setEmotion("frustrated")}>Frustrate</button>
+            <button onClick={() => setEmotion("enthusiastic")}>Enthuse</button>
+            </>
+    );
+}
+```
+This allows us to do something that doesn't have to do with the render of the component, but it's just a side effect. useEffect takes in a second argument and this argument called the dependency array.
+```
+useEffect(() => {
+        console.log(`It's ${emotion} around here!`);
+    }, [emotion])
+```
+I'm going to pass emotion into this dependency array to keep tracks of values. NOw I can see everytime this being updated. so useEffect is going to watch this state value if it changes it will call the function. 
