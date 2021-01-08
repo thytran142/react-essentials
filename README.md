@@ -401,3 +401,5 @@ function App({login}) {
     }
 }
 ```
+##### React Testing
+Any files ends in .test.js is going to be through of as a test. 
