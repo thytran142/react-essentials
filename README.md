@@ -68,3 +68,39 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+#### Learning
+##### Intro to React elements
+How React render elements:
+```
+React.createElement("h1", null, "Heyy Engine!"),
+```
+First is what we want to put (h1), where we want to put(null), and content.
+Add property:
+```
+React.createElement("h1", {style: {color: "blue"}}, "Heyy Engine!"),
+```
+
+Add a ul:
+```
+ React.createElement(
+      "ul",
+      null,
+      React.createElement("li", null, "Monday"),
+      React.createElement("li", null, "Tuesday"),
+      React.createElement("li", null, "Wednesday"),
+      React.createElement("li", null, "Thursday")
+  ),
+```
+The above equivalents here:
+```
+ReactDOM.render(
+<ul>
+<li>Monday</li>
+<li>Tuesday</li>
+<li>Wednesday</li>
+</ul>,
+document.getElementById("root")
+```
+
