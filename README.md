@@ -370,3 +370,34 @@ function App({login}) {
 
 }
 ```
+**Handling loading states**
+When we make an HTTP request to an API, there are 3 possible states: pending loading, success and failed. A lot of times if we make our requests to a broken URL, we just have empty screen and we want to let users know that something has gone wrong. 
+```
+function App({login}) {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        if (!login) return;
+        setLoading(true);
+        fetch(`https://api.github.com/users/${login}`)
+            .then((response) => response.json())
+            .then(setData)
+            .then(() => setLoading(false))
+            .catch(setError);
+    }, [login]); // everytime the value is changed we will call it
+    if (loading) return <h1>Loading...</h1>;
+    if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
+    if (!data) return null;
+    {
+        return (
+            <>
+               <h1>{data.name}</h1>
+                <p>{data.location}</p>
+                <img alt={data.login} src={data.avatar_url}/>
+            </>
+        );
+    }
+}
+```
