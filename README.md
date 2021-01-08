@@ -344,3 +344,29 @@ function App() {
 ```
 A reducer function's most simple definition is it takes in the current state and it returns a new state. If checked is false, it should return the opposite, which is true. 
 
+##### Asynchronous React
+**Fetching data with Hooks**
+We're going to grab some data from Github API. If I go to api.github.com/users, this will give me a list of all the GitHub users and their data as JSON.
+
+```
+function App({login}) {
+    const [data, setData] = useState(null);
+    useEffect(() => {
+        fetch(`https://api.github.com/users/${login}`)
+            .then((response) => response.json())
+            .then(setData);
+    }, []);
+    if (data) {
+        return (
+            <>
+                {JSON.stringify(data)}
+            </>
+        );
+    } else {
+        return (
+            <> No data is found </>
+        )
+    }
+
+}
+```
