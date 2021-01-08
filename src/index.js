@@ -3,19 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from "./App";
-function AppTwo() {
-    return (
-        <h1>This is the second app</h1>
-    )
-}
+const [mostImportantItem, second, light] = ["boots", "tent", "headlamp"];
+console.log(mostImportantItem, second, light);
+
 ReactDOM.render(
-    <>
-        <App/>,
-        <AppTwo/>
-    </>
-  ,
-  document.getElementById('root')
-);
+    <App authorized={true} />,
+    document.getElementById('root')
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

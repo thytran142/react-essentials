@@ -244,3 +244,38 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+##### React State in the Component Tree
+First way to render conditional rendering:
+```
+ReactDOM.render(
+    <App authorized={true} />,
+    document.getElementById('root')
+)
+```
+
+```
+function App(props) {
+    if (props.authorized) {
+        return <SecretComponent/>
+    } else {
+        return <RegularComponent/>
+    }
+}
+```
+
+Second way:
+```
+function App(props) {
+    return (
+        <>
+            {props.authorized ? <SecretComponent/> : <RegularComponent/>}
+            </>
+    );
+}
+```
+**Destructing arrays and objects**
+```
+const [mostImportantItem] = ["boots", "tent", "headlamp"];
+console.log(mostImportantItem);
+```
+It will take the first item which is "boots"
