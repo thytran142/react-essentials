@@ -104,3 +104,143 @@ ReactDOM.render(
 document.getElementById("root")
 ```
 
+##### React Components
+We have the following:
+```
+function App() {
+  return (
+    <div className="App">
+        <h1>Header</h1>
+        <h2>Main</h2>
+        <h3>Footer</h3>
+    </div>
+  );
+}
+```
+And when we export default App; // That I need to import that to my index.js, 
+we will import app under index.js to display it.
+```
+ReactDOM.render(
+  App(),
+  document.getElementById('root')
+);
+```
+
+Now we want to replace header as a component:
+```
+function Header() {
+    return (
+        <header>
+            <h1>Eve's Kitchen</h1>
+        </header>
+    );
+}
+```
+
+So under the app we can:
+```
+function App() {
+  return (
+    <div className="App">
+        <Header/>
+        <h2>Main</h2>
+        <h3>Footer</h3>
+    </div>
+  );
+}
+```
+At the end we can have something as below:
+```
+function App() {
+  return (
+    <div className="App">
+        <Header/>
+        <Main/>
+        <Footer/>
+    </div>
+  );
+}
+```
+**How to add a property to your component**
+It's always have a props (if nothing passed, it is an empty object):
+```
+function Header(props) {
+    // Always have a props and maybe an empty object
+    console.log(props);
+    return (
+        <header>
+            <h1>{props.name}'s Kitchen</h1>
+        </header>
+    );
+}
+```
+In order to pass the property:
+```
+ <Header name="Cindy"/>
+```
+In order to pass the data: 
+
+```
+ <section>
+            <p>We serve the most {props.adjective} food around.</p>
+            <ul style={{textAlign: "Left"}}>
+                {props.dishes.map((dish) => (
+                    <li>{dish}</li>
+                ))}
+            </ul>
+        </section>
+```
+The javascript will have textAlign (instead text-align following css).
+
+When we do that, we have an error in the console.log:
+```
+index.js:1 Warning: Each child in a list should have a unique "key" prop.
+
+Check the render method of `Main`. See https://reactjs.org/link/warning-keys for more information.
+    at li
+    at Main (http://localhost:3000/static/js/main.chunk.js:182:46)
+    at div
+```
+
+So add the id as below:
+```
+ <ul style={{textAlign: "Left"}}>
+                {props.dishes.map((dish, i) => (
+                    <li key={i}>{dish}</li>
+                ))}
+            </ul>
+```
+
+Use fragments:
+```
+ReactDOM.render(
+    <div>
+        <App/>,
+        <AppTwo/>
+    </div>
+  ,
+  document.getElementById('root')
+);
+```
+(Wrapped them into a <div></div> so it won't have a problem). You can use fragment:
+```
+ReactDOM.render(
+    <React.Fragment>
+        <App/>,
+        <AppTwo/>
+    </React.Fragment>
+  ,
+  document.getElementById('root')
+);
+```
+Or even no need the keyword "Fragment":
+```
+ReactDOM.render(
+    <>
+        <App/>,
+        <AppTwo/>
+    </>
+  ,
+  document.getElementById('root')
+);
+```
