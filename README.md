@@ -279,3 +279,22 @@ const [mostImportantItem] = ["boots", "tent", "headlamp"];
 console.log(mostImportantItem);
 ```
 It will take the first item which is "boots"
+
+**Understanding the useState hook**
+```
+import React, {useState} from 'react';
+function App() {
+    const [emotion, setEmotion] = useState("happy");
+    return (
+        <>
+            <h1>Current emotion is {emotion}.</h1>
+            <button onClick={() => setEmotion("happy")}>Happy</button>
+            <button onClick={() => setEmotion("frustrated")}>Frustrate</button>
+            <button onClick={() => setEmotion("enthusiastic")}>Enthuse</button>
+            </>
+    );
+}
+```
+useState has 2 variables: 1 is state, 1 is the function.
+
+
